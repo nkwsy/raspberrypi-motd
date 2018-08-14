@@ -75,26 +75,26 @@ borderLine="━━━━━━━━━━━━━━━━━━━━━━�
 borderTopLine=$(color $borderColor "┏$borderLine┓")
 borderBottomLine=$(color $borderColor "┗$borderLine┛")
 borderBar=$(color $borderColor "┃")
-borderEmptyLine="$borderBar                                                                              $borderBar"
+borderEmptyLine="                                                                              "
 
 # Header
 header="$borderTopLine\n$borderEmptyLine\n"
-header="$header$borderBar$(color $headerLeafColor "          .~~.   .~~.                                                         ")$borderBar\n"
-header="$header$borderBar$(color $headerLeafColor "         '. \ ' ' / .'                                                        ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "          .~ .~~~..~.                      _                          _       ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "         : .~.'~'.~. :     ___ ___ ___ ___| |_ ___ ___ ___ _ _    ___|_|      ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "        ~ (   ) (   ) ~   |  _| .'|_ -| . | . | -_|  _|  _| | |  | . | |      ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "       ( : '~'.~.'~' : )  |_| |__,|___|  _|___|___|_| |_| |_  |  |  _|_|      ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "        ~ .~ (   ) ~. ~               |_|                 |___|  |_|          ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "         (  : '~' :  )                                                        ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "          '~ .~~~. ~'                                                         ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "              '~'                                                             ")$borderBar"
+header="$header$(color $headerLeafColor "          .~~.   .~~.                                                         ")\n"
+header="$header$(color $headerLeafColor "         '. \ ' ' / .'                                                        ")\n"
+header="$header$(color $headerRaspberryColor "          .~ .~~~..~.                      _                          _       ")\n"
+header="$header$(color $headerRaspberryColor "         : .~.'~'.~. :     ___ ___ ___ ___| |_ ___ ___ ___ _ _    ___|_|      ")\n"
+header="$header$(color $headerRaspberryColor "        ~ (   ) (   ) ~   |  _| .'|_ -| . | . | -_|  _|  _| | |  | . | |      ")\n"
+header="$header$(color $headerRaspberryColor "       ( : '~'.~.'~' : )  |_| |__,|___|  _|___|___|_| |_| |_  |  |  _|_|      ")\n"
+header="$header$(color $headerRaspberryColor "        ~ .~ (   ) ~. ~               |_|                 |___|  |_|          ")\n"
+header="$header$(color $headerRaspberryColor "         (  : '~' :  )                                                        ")\n"
+header="$header$(color $headerRaspberryColor "          '~ .~~~. ~'                                                         ")\n"
+header="$header$(color $headerRaspberryColor "              '~'                                                             ")"
 
 me=$(whoami)
 
 # Greetings
-greetings="$borderBar$(color $greetingsColor "$(center "Welcome back, $me!")")$borderBar\n"
-greetings="$greetings$borderBar$(color $greetingsColor "$(center "$(date +"%A, %d %B %Y, %T")")")$borderBar"
+greetings="$(color $greetingsColor "$(center "Welcome back, $me!")")\n"
+greetings="$greetings$(color $greetingsColor "$(center "$(date +"%A, %d %B %Y, %T")")")"
 
 # System information
 read loginFrom loginIP loginDate <<< $(last $me --time-format iso -2 | awk 'NR==2 { print $2,$3,$4 }')
@@ -113,22 +113,22 @@ else
 fi
 
 label1="$(extend "$login")"
-label1="$borderBar  $(color $statsLabelColor "Last Login....:") $label1$borderBar"
+label1="  $(color $statsLabelColor "Last Login....:") $label1"
 
 uptime="$(sec2time $(cut -d "." -f 1 /proc/uptime))"
 uptime="$uptime ($(date -d "@"$(grep btime /proc/stat | cut -d " " -f 2) +"%d-%m-%Y %H:%M:%S"))"
 
 label2="$(extend "$uptime")"
-label2="$borderBar  $(color $statsLabelColor "Uptime........:") $label2$borderBar"
+label2="  $(color $statsLabelColor "Uptime........:") $label2"
 
 label3="$(extend "$(free -m | awk 'NR==2 { printf "Total: %sMB, Used: %sMB, Free: %sMB",$2,$3,$4; }')")"
-label3="$borderBar  $(color $statsLabelColor "Memory........:") $label3$borderBar"
+label3="  $(color $statsLabelColor "Memory........:") $label3"
 
 label4="$(extend "$(df -h ~ | awk 'NR==2 { printf "Total: %sB, Used: %sB, Free: %sB",$2,$3,$4; }')")"
-label4="$borderBar  $(color $statsLabelColor "Home space....:") $label4$borderBar"
+label4="  $(color $statsLabelColor "Home space....:") $label4"
 
 label5="$(extend "$(/opt/vc/bin/vcgencmd measure_temp | cut -c "6-9")ºC")"
-label5="$borderBar  $(color $statsLabelColor "Temperature...:") $label5$borderBar"
+label5="  $(color $statsLabelColor "Temperature...:") $label5"
 
 stats="$label1\n$label2\n$label3\n$label4\n$label5"
 
